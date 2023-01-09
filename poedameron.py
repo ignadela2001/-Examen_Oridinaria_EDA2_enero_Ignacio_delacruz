@@ -1,28 +1,10 @@
-Simbolos_con_frecuencia = ["Simbolo"("A", 0.2 ), "Simbolo"("B")
-]
-
-class Compression:
-    # Constructor
-    def __init__(self):
-        self.message = ""
-        self.symbol_freq = {}
-        self.huffman_tree = None
-
-    # Method to set the message to be compressed
-    def set_message(self, message):
-        self.message = message
-
-    # Method to generate the symbol frequency table
-    def generate_symbol_freq_table(self):
-        for char in self.message:
-            if char in self.symbol_freq:
-                self.symbol_freq[char] += 1
-            else:
-                self.symbol_freq[char] = 1
- 
-    # Method to generate the Huffman Tree
-    def generate_huffman_tree(self):
-        # Create a priority queue
-        pq = PriorityQueue()
- 
-        # Iterate through the table and add the elements to the priority que
+import heapq
+frecuencias = {'A': 0.2, 'F': 0.17, '1': 0.13, '3': 0.21, '0': 0.05, 'M': 0.09, 'T': 0.15}
+mont = []
+for tab, frecuencia in frecuencias.items():
+    heapq.heappush(mont, (frecuencia, tab))
+while len(mont) > 1:
+    frecuencia1, tab1 = heapq.heappop(mont)
+    frecuencia2, tab2 = heapq.heappop(mont)
+    heapq.heappush(mont, (frecuencia1 + frecuencia2, (tab1, tab2)))
+print(heapq.heappop(mont))
